@@ -12,8 +12,8 @@ import 'package:clan_anime/UI/pages/sign_in/password_screen.dart';
 import 'package:clan_anime/UI/pages/feed_screen.dart';
 
 Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp().then((value) => Get.put(AuthController()));
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp().then((value) => Get.put(AuthController()));
   runApp(MyApp());
 }
 
