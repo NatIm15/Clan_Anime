@@ -32,10 +32,10 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       String errMessage;
       switch (e.code) {
-        case 'auth/email-already-in-use':
+        case 'email-already-in-use':
           errMessage = 'Este email ya ha sido utilizado.';
           break;
-        case 'auth/invalid-email':
+        case 'invalid-email':
           errMessage = 'Correo inválido';
           break;
         default:
@@ -53,21 +53,20 @@ class AuthController extends GetxController {
     } on FirebaseAuthException catch (e) {
       String errMessage;
       switch (e.code) {
-        case 'auth/user-disabled':
+        case 'user-disabled':
           errMessage = 'Este email ha sido deshabilitado.';
           break;
-        case 'auth/invalid-email':
+        case 'invalid-email':
           errMessage = 'Correo inválido';
           break;
-        case 'auth/user-not-found':
+        case 'user-not-found':
           errMessage = 'Correo erróneo';
           break;
-        case 'auth/wrong-password':
+        case 'wrong-password':
           errMessage = 'Contraseña erróneo';
           break;
         default:
-          errMessage =
-              'Ha ocurrido un error al momento de registrar su usuario. Intentelo más tarde.';
+          errMessage = e.code;
           break;
       }
       return Future.error(errMessage);

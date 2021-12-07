@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StateScreen extends StatelessWidget {
-  final StateController _controller = StateController();
+  final StateController _controller = Get.find();
   StateScreen({Key? key}) : super(key: key);
 
   @override
