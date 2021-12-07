@@ -1,7 +1,4 @@
-import 'package:clan_anime/UI/pages/log_in/login_screen.dart';
-import 'package:clan_anime/UI/theme/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -28,13 +25,13 @@ class AuthController extends GetxController {
     return uid;
   }
 
-  void registrar(String email, password) async {
+  Future<void> registrar(String email, password) async {
     try {
       await auth.createUserWithEmailAndPassword(
           email: email, password: password);
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       String errMessage;
-      switch (e) {
+      switch (e.code) {
         case 'auth/email-already-in-use':
           errMessage = 'Este email ya ha sido utilizado.';
           break;
@@ -46,23 +43,16 @@ class AuthController extends GetxController {
               'Ha ocurrido un error al momento de registrar su usuario. Intentelo más tarde.';
           break;
       }
-      Get.snackbar("About User", "User message",
-          backgroundColor: kSecondaryColor,
-          snackPosition: SnackPosition.BOTTOM,
-          titleText: const Text(
-            "Ocurrió un error al crear el usuario",
-            style: TextStyle(color: Colors.white),
-          ),
-          messageText: Text(errMessage, style: TextStyle(color: Colors.white)));
+      return Future.error(errMessage);
     }
   }
 
-  void ingresar(String email, password) async {
+  Future<void> ingresar(String email, password) async {
     try {
       await auth.signInWithEmailAndPassword(email: email, password: password);
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       String errMessage;
-      switch (e) {
+      switch (e.code) {
         case 'auth/user-disabled':
           errMessage = 'Este email ha sido deshabilitado.';
           break;
@@ -80,18 +70,15 @@ class AuthController extends GetxController {
               'Ha ocurrido un error al momento de registrar su usuario. Intentelo más tarde.';
           break;
       }
-      Get.snackbar("About Login", "Login message",
-          backgroundColor: kSecondaryColor,
-          snackPosition: SnackPosition.BOTTOM,
-          titleText: const Text(
-            "Ocurrió un error al ingresar el usuario",
-            style: TextStyle(color: Colors.white),
-          ),
-          messageText: Text(errMessage, style: TextStyle(color: Colors.white)));
+      return Future.error(errMessage);
     }
 
     void logout() async {
-      await auth.signOut();
+      try {
+        await auth.signOut();
+      } catch (e) {
+        return Future.error(e.toString());
+      }
     }
   }
 }
