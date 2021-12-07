@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "978216388639",
+    "project_id": "clan-anime",
+    "storage_bucket": "clan-anime.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:978216388639:android:01ba100c3343f7b310ed2a",
+        "android_client_info": {
+          "package_name": "com.example.clan_anime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "978216388639-hm30kfgas5mpefugqvfak3e6mrl0mh7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4KpvGKK7D9Icm7O8T6u60fp6Gd5cWXrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "978216388639-hm30kfgas5mpefugqvfak3e6mrl0mh7l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "978216388639-u4q3tccarq0djo0nf2b4bsdvfsusnlg2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.clanAnime"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
