@@ -27,3 +27,13 @@ class StateController extends GetxController {
     update();
   }
 }
+
+class HiddenPassword extends GetxController {
+  bool isHidden = true;
+
+  void changeHidden() {
+    this.isHidden = !isHidden;
+    update();
+    print(isHidden);
+  }
+}

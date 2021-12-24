@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Body extends StatelessWidget {
-  const Body({
+  final emailCtrl = TextEditingController();
+  Body({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Form(
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -28,10 +30,45 @@ class Body extends StatelessWidget {
                 style: GoogleFonts.raleway(color: Colors.black),
                 textAlign: TextAlign.center,
               ),
-              TxtInputField(
-                  hintText: 'Correo Electrónico',
-                  onChanged: (value) {},
-                  size: 10),
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                width: size.width * 0.8,
+                child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: emailCtrl,
+                  decoration: InputDecoration(
+                    hintText: 'Correo Electrónico',
+                    hintStyle: const TextStyle(color: kTercearyColor),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 18),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: kTercearyColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: kSecondaryColor),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: kPrimaryColor),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: kSecondaryColor),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'El Correo Electrónico es obligatorio';
+                    } else if (!value.contains('@')) {
+                      return 'El correo no cumple con las características';
+                    }
+                  },
+                ),
+              ),
               LargeButton(text: 'Recuperar', press: () {}),
             ],
           ),

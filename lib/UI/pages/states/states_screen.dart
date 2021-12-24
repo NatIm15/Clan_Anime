@@ -1,12 +1,12 @@
 import 'package:clan_anime/UI/theme/constant.dart';
-import 'package:clan_anime/domain/controllers/state_controller.dart';
+import 'package:clan_anime/domain/controllers/_controllers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class StateScreen extends StatelessWidget {
-  final StateController _controller = Get.find();
+  final StateController _controller = StateController();
   StateScreen({Key? key}) : super(key: key);
 
   @override

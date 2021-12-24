@@ -19,7 +19,7 @@ class UserInfoInput extends StatelessWidget {
     return AppBar(
       elevation: 0,
       backgroundColor: Colors.white,
-      title: Next(tap: () {}),
+      title: Next(msg: 'listo', tap: () {}),
       leading: IconButton(
         icon: const Icon(
           Icons.keyboard_arrow_left_rounded,

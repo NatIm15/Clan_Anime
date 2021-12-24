@@ -1,7 +1,7 @@
 import 'package:clan_anime/UI/theme/constant.dart';
 import 'package:clan_anime/UI/widgets/components/txtfield_container.dart';
 import 'package:clan_anime/UI/widgets/feed/body_home.dart';
-import 'package:clan_anime/domain/controllers/state_controller.dart';
+import 'package:clan_anime/domain/controllers/_controllers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

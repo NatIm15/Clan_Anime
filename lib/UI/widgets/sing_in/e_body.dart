@@ -20,8 +20,11 @@ class _BodyEState extends State<BodyE> {
   DateTime dateTime = DateTime.now();
   String? value;
 
+  final emailCtrl = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Form(
       child: Container(
         margin: EdgeInsets.only(bottom: 100),
@@ -36,17 +39,41 @@ class _BodyEState extends State<BodyE> {
                   fontSize: 29,
                 ),
               ),
-              TxtInputField(
-                  hintText: 'Nombre', onChanged: (value) {}, size: 46),
-              TxtFieldContainer(
-                top_margin: 10,
-                child: TextField(
-                  onChanged: (value) => null,
+              SizedBox(height: 50),
+              SizedBox(
+                width: size.width * 0.8,
+                child: TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: emailCtrl,
                   decoration: InputDecoration(
-                    border: InputBorder.none,
                     hintText: 'Correo Electrónico',
                     hintStyle: const TextStyle(color: kTercearyColor),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 18),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: kTercearyColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: kSecondaryColor),
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: kPrimaryColor),
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      borderSide: const BorderSide(color: kSecondaryColor),
+                    ),
                   ),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'El Correo Electrónico es obligatorio';
+                    } else if (!value.contains('@')) {
+                      return 'El correo no cumple con las características';
+                    }
+                  },
                 ),
               ),
               TxtFieldContainer(

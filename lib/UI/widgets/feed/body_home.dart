@@ -1,7 +1,6 @@
 import 'package:clan_anime/UI/pages/states/states_screen.dart';
 import 'package:clan_anime/UI/pages/states/users_states_screen.dart';
 import 'package:clan_anime/UI/theme/constant.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';

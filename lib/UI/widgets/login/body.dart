@@ -16,10 +16,6 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final loginFormKey = GlobalKey<FormState>();
-  final emailCtrl = TextEditingController();
-  final passwordCtrl = TextEditingController();
-
   AuthController _authCtrl = Get.find();
 
   _signup(theEmail, thePwd) async {
@@ -35,6 +31,11 @@ class _BodyState extends State<Body> {
       );
     }
   }
+
+  final loginFormKey = GlobalKey<FormState>();
+  final emailCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
+  bool isHiddenPwd = true;
 
   @override
   Widget build(BuildContext context) {
@@ -61,19 +62,19 @@ class _BodyState extends State<Body> {
                 fontSize: 37,
               ),
             ),
-            SizedBox(
-              height: 70,
+            const SizedBox(
+              height: 60,
             ),
-            Container(
+            SizedBox(
               width: size.width * 0.8,
               child: TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 controller: emailCtrl,
                 decoration: InputDecoration(
                   hintText: 'Correo Electrónico',
-                  hintStyle: TextStyle(color: kTercearyColor),
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 15.0, vertical: 18),
+                  hintStyle: const TextStyle(color: kTercearyColor),
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 18),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(color: kTercearyColor),
@@ -100,13 +101,13 @@ class _BodyState extends State<Body> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
-            Container(
+            SizedBox(
               width: size.width * 0.8,
               child: TextFormField(
-                obscureText: true,
+                obscureText: isHiddenPwd,
                 controller: passwordCtrl,
                 decoration: InputDecoration(
                     hintText: 'Contraseña',
@@ -129,9 +130,14 @@ class _BodyState extends State<Body> {
                       borderRadius: BorderRadius.circular(10.0),
                       borderSide: const BorderSide(color: kSecondaryColor),
                     ),
-                    suffixIcon: Icon(
-                      Icons.visibility,
-                      color: kTercearyColor,
+                    suffixIcon: GestureDetector(
+                      onTap: () => setState(() {
+                        isHiddenPwd = !isHiddenPwd;
+                      }),
+                      child: Icon(
+                        isHiddenPwd ? Icons.visibility : Icons.visibility_off,
+                        color: kTercearyColor,
+                      ),
                     )),
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -150,7 +156,8 @@ class _BodyState extends State<Body> {
                   'Olvidaste tu Contraseña?',
                   style: TextStyle(color: kSecondaryColor),
                 ),
-                onPressed: () => Get.to(() => RecuperarScreen()),
+                onPressed: () => Get.to(() => RecuperarScreen(),
+                    transition: Transition.native),
               ),
             ),
             LargeButton(

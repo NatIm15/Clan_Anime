@@ -72,6 +72,7 @@ class AuthController extends GetxController {
       return Future.error(errMessage);
     }
 
+    // ignore: unused_element
     void logout() async {
       try {
         await auth.signOut();
